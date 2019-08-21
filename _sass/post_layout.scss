@@ -1,0 +1,117 @@
+.post-content {
+
+
+    h4 {
+        font-size: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: solid 1px #ccc;
+    }
+
+    h6 {
+        margin-top:2rem;
+    }
+    h6~p {
+        text-indent: 2em;
+    }
+    p~h4 {
+        margin-top: 3rem;
+    }
+
+    table {
+        width: max-content;
+        margin-left: 1rem;
+    }
+
+    tr td {
+        padding: 0.5rem 4rem;
+    }
+    td:nth-child(even) {
+        background-color: #f3e9dd80;
+    }
+
+    tr:nth-child(even) {
+        background-color: #c8ffc180;
+
+        td:nth-child(even) {
+            background-color: transparent;
+        }
+    }
+
+    div.highlighter-rouge {
+        margin-left: 2rem;
+    }
+
+
+}
+
+.card {
+    .card-reveal {
+        background-color: #ffffffef
+    }
+    .card-image {
+      img {
+          height: 20rem;
+
+        }
+    }
+    &:hover {
+        img {
+            filter: blur(2px)
+        }
+    }
+}
+
+.post-meta {text-align: right}
+
+
+.method {
+    font-size: 1.2rem;
+    font-weight: 600;
+    line-height: 1.25;
+    position: relative;
+    margin-left: 60px;
+
+    &::before {
+        content: "Method";
+        font-size: 0.9rem;
+        font-weight: 400;
+        color: #999;
+        font-style: italic;
+        position: absolute;
+        left: -60px;
+        bottom:0;
+    }
+}
+.method.deprecated {
+    color: #666;
+    font-weight: normal;
+    font-style: italic;
+    text-decoration:line-through;
+
+    &::after {
+        content: "deprecated";
+        position: absolute;
+        left: calc(100% + 5px);
+        font-size: 0.8rem;
+        top: 0;
+    }
+}
+
+.const {
+    font-size: 1rem;
+    font-weight:400;
+    line-height: 1.25;
+    position: relative;
+    margin-left: 50px;
+
+    &::before {
+        content: "const";
+        font-size: 0.9rem;
+        font-weight: 400;
+        color: #999;
+        font-style: italic;
+        position: absolute;
+        left: -50px;
+        top:0;
+    }
+}

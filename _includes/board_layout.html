@@ -1,0 +1,20 @@
+<div class="row">
+    {% for board in site.data.boards %}
+    <div class="col s12 m6">
+        <div class="card medium sticky-action">
+            <div class="card-image waves-effect waves-block waves-light">
+                <img class="activator" src="../assets/images/{{ board.image }}">
+            </div>
+            <div class="card-action">
+                <span class="card-title activator grey-text text-darken-4">{{ board.title }}<i
+                        class="material-icons right">more_vert</i></span>
+                <p><a href="{{board.url}}">查看使用教程</a></p>
+            </div>
+            <div class="card-reveal">
+                <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
+                <p>{{ board.desc }}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>

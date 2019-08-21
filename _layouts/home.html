@@ -1,0 +1,52 @@
+{% include head.html %}
+
+<div id="home" class="section scrollspy">
+    <div id="index-banner" class="parallax-container">
+        <div class="section no-pad-bot">
+            <div class="container">
+                <br><br>
+                <h1 class="header center teal-text text-lighten-2">{{ site.title }}</h1>
+                <div class="row center">
+                    <h5 class="header col s12 light">{{ site.description }}</h5>
+                </div>
+            </div>
+        </div>
+        <div class="parallax"><img src="{{site.parallax_image_one}}" alt="Unsplashed background"></div>
+    </div>
+</div>
+
+<div class="container" style="padding:20px;">
+    <section id="boards" class="section scrollspy">
+        <h3 style="text-align:center;">{{site.boards-title}}</h3>
+        {% include board_layout.html %}
+    </section>
+</div>
+
+<div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+        <div class="container">
+            <div class="row center">
+            </div>
+        </div>
+    </div>
+    <div class="parallax"><img src="{{site.parallax_image_two}}" alt="Unsplashed background img 3"></div>
+</div>
+
+<div class="container" style="padding:20px;">
+    <div id="posts" class="section scrollspy">
+        <h3 style="text-align:center;">MPY STM32F1 库模块文档</h3>
+        {% include blog-feed.html %}
+    </div>
+</div>
+
+<div class="container" style="padding:20px;">
+    <div id="contact" class="section scrollspy">
+        <h3 style="text-align:center;">给我留言</h3>
+        {% include contact.html %}
+    </div>
+</div>
+
+
+{% include nav-burger.html %}
+
+{% include footer.html %}

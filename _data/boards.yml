@@ -1,0 +1,30 @@
+- title: 启明欣欣F103
+  url: "/#"
+  image: qiming103.jpg
+  desc: "* STM32F103RCT6 ARM Cortex M3 / 72MHz, 256 KB Flash, 64KB SRAM<br>
+* 华邦 W25Q16 16Mbit SPI Flash<br>
+* Atmel 24C02<br>
+* RTC 电池座(CR1220)<br>
+* NRF24L01/ESP8266-01/S1 插座<br>
+* DHT11 18B20 / HS0038 插座<br>
+* 无源蜂鸣器<br>
+* BLE 接口<br>
+* TFT-LCD 接口<br>
+* JTAG/SWD 20Pin 调试接口"
+
+
+- title: SR139-F103ZE
+  url: "/#"
+  image: sr139.jpg
+  desc: "* STM32F103ZET6 ARM Cortex M3 / 72MHz, 512 KB Flash, 64KB SRAM<br>
+* 华邦 W25Q16 SPI Flash<br>
+* RTC 电池座(CR1220)<br>
+* SRAM IS62WV51216<br>
+* 2.8寸液晶屏(FSMC)<br>
+* JTAG/SWD 20Pin 调试接口"
+
+
+#- title: STM32F103VE
+#  desc: "Describe your project!"
+#  url: "/#"
+#  image: contact4.png

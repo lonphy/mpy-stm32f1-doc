@@ -1,0 +1,60 @@
+title: MPY STM32F103 文档
+name: lonphy
+email: dev@lonphy.com
+description: STM32F103xE/xG 系列 MicroPython 文档
+
+baseurl: "/blog"
+url: ""
+
+display_footer: inital  #change this to 'none' if you want to hide the footer copyright text
+
+parallax_image_one: assets/images/startup3.jpg # These are the images used for the parallax background
+parallax_image_two: assets/images/startup3.jpg
+
+# 选择 首页 - 支持开发板部分布局样式
+boards-title: 支持的开发板
+
+icon_size: 50 # font-size of icons in px
+colored: colored # Leave blank for black and white icons
+
+project_button: Github
+
+github: https://github.com/lonphy/micropython
+medium: https://medium.com
+
+baseurl: # if your site is located at /blog or /home, enter it here, otherwise leave it empty
+url: http://localhost:4000/ #the url of your site
+
+# sass 目录配置
+sass:
+    sass_dir: _sass
+    # style: compressed
+
+# Build settings
+markdown: kramdown
+markdown_ext : "md"
+kramdown:
+  auto_ids          : true
+  entity_output     : as_char
+  toc_levels        : 1..6
+  smart_quotes      : lsquo,rsquo,ldquo,rdquo
+  input             : GFM
+  hard_wrap         : false
+  footnote_nr       : 1
+  show_warnings     : false
+
+host : 0.0.0.0
+
+
+# 定义前端路由
+# none   -> /:categories/:title:output_ext
+# pretty -> /:categories/:year/:month/:day/:title/
+permalink: none
+
+collections:
+  _darft:
+    output: true
+    permalink: /:collection/:name
+
+plugins:
+  - jekyll-feed
