@@ -13,7 +13,7 @@ category: machine
 
 ###### `PinRemap.remap(phriph [, value])`{:class="method"}
     
-描述: 获取或配置管脚映射
+获取或配置管脚映射
 
 参数: 
 - `phriph`, 参考 [Pin重映射外设](#const_phriph)

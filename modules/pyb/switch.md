@@ -8,7 +8,7 @@ category: pyb
 
 按键开关(pyb.Switch)
 
-Switch实例用于控制一个按钮开关
+Switch单例 用于控制一个按钮开关
 示例:
 
 ```python
@@ -33,16 +33,16 @@ pyb.Switch().callback(lambda: pyb.LED(1).toggle())
 
 ###### `pyb.Switch.__call__()`{:class="method"}
 
-描述: 直接调用Switch对象,获取开关状态：True-按下, False-未按下
+直接调用Switch对象,获取开关状态：True-按下, False-未按下
 
 
 ###### `pyb.Switch.value()`{:class="method"}
      
-描述: 获取开关状态：True-按下, False-未按下
+获取开关状态：True-按下, False-未按下
 
 
 ###### `pyb.Switch.callback([callback])`{:class="method"}
 
-描述: 设置Switch回调方法
+设置Switch回调方法
 
 如果`callback=None`, 则禁用回调

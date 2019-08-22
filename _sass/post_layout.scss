@@ -1,6 +1,4 @@
 .post-content {
-
-
     h4 {
         font-size: 1.5rem;
         padding-bottom: 1rem;
@@ -8,11 +6,13 @@
     }
 
     h6 {
-        margin-top:2rem;
+        margin-top: 2rem;
     }
+
     h6~p {
         text-indent: 2em;
     }
+
     p~h4 {
         margin-top: 3rem;
     }
@@ -25,6 +25,7 @@
     tr td {
         padding: 0.5rem 4rem;
     }
+
     td:nth-child(even) {
         background-color: #f3e9dd80;
     }
@@ -40,20 +41,19 @@
     div.highlighter-rouge {
         margin-left: 2rem;
     }
-
-
 }
 
 .card {
     .card-reveal {
         background-color: #ffffffef
     }
-    .card-image {
-      img {
-          height: 20rem;
 
+    .card-image {
+        img {
+            height: 20rem;
         }
     }
+
     &:hover {
         img {
             filter: blur(2px)
@@ -61,15 +61,20 @@
     }
 }
 
-.post-meta {text-align: right}
+.post-meta {
+    text-align: right
+}
 
 
 .method {
     font-size: 1.2rem;
-    font-weight: 600;
+    font-weight: 400;
     line-height: 1.25;
     position: relative;
-    margin-left: 60px;
+    padding: 0 10px 3px 60px;
+    text-indent: 60px;
+    border-bottom: solid 1px rgb(192, 162, 162);
+    font-family: Verdana, sans-serif;
 
     &::before {
         content: "Method";
@@ -78,15 +83,16 @@
         color: #999;
         font-style: italic;
         position: absolute;
-        left: -60px;
-        bottom:0;
+        left: -56px;
+        bottom: 2px;
     }
 }
+
 .method.deprecated {
     color: #666;
     font-weight: normal;
     font-style: italic;
-    text-decoration:line-through;
+    text-decoration: line-through;
 
     &::after {
         content: "deprecated";
@@ -99,10 +105,11 @@
 
 .const {
     font-size: 1rem;
-    font-weight:400;
+    font-weight: 400;
     line-height: 1.25;
     position: relative;
     margin-left: 50px;
+    font-family: Verdana, sans-serif;
 
     &::before {
         content: "const";
@@ -112,6 +119,6 @@
         font-style: italic;
         position: absolute;
         left: -50px;
-        top:0;
+        top: 0;
     }
 }

@@ -13,7 +13,7 @@ category: machine
 
 ###### `WDT(id, timeout)`{:class="method"}
     
-描述: 构造方法, 创建独立看门狗
+构造方法, 创建独立看门狗
 
 参数:
 - `id`: 看门狗ID， 只能是0
@@ -31,7 +31,7 @@ category: machine
 
 ###### `WDT.feed()`{:class="method"}
 
-描述: 喂狗
+喂狗
 
 
 #### 综合示例

@@ -14,16 +14,16 @@ category: machine
 
 ###### `Pin.debug([state=False])`{:class="method"}
     
-描述: 打开或关闭Pin调试模式, 并返回当前模式
-    > 调试模式只在查找Pin使用`mapper`/`dict`时有效
+打开或关闭Pin调试模式, 并返回当前模式
+> 调试模式只在查找Pin使用`mapper`/`dict`时有效
 
-    参数: `state`
-    - `False` : 关闭调试模式
-    - `True`: 打开调试模式
+参数: `state`
+- `False` : 关闭调试模式
+- `True`: 打开调试模式
 
 ###### `Pin.mapper([fun])`{:class="method"}
 
-描述: 设置或获取管脚名映射函数
+设置或获取管脚名映射函数
 
 ```python
 import machine
@@ -38,7 +38,7 @@ machine.Pin.mapper()           # get mapper
 
 ###### `Pin.dict([dict])`{:class="method"}
 
-描述: 设置或获取管脚映射字典
+设置或获取管脚映射字典
     
 ```python
 import machine
@@ -78,7 +78,7 @@ MCU所有管脚定义 例如: `Pin.cpu.A0`
 
 ###### `Pin.init(mode, pull=None, af=-1, value, alt=-1)`{:class="method"}
 
-描述: 初始化Pin
+初始化Pin
 
 参数:  
 * `mode` - 运行模式 (参考 类属性->常量定义->工作模式)
@@ -89,19 +89,19 @@ MCU所有管脚定义 例如: `Pin.cpu.A0`
 
 ###### `Pin.name()`{:class="method"}
      
-描述: 返回Pin名称
+返回Pin名称
 
 ###### `Pin.names()`{:class="method"}
 
-描述: 返回Pin名称列表
+返回Pin名称列表
 
 ###### `Pin.__str__()`{:class="method"}
 
-描述: 返回Pin对象描述
+返回Pin对象描述
 
 ###### `Pin.value([value])`{:class="method"}
 
-描述: 设置Pin管脚电平(ODR)或获取Pin管脚电平(IDR)
+设置Pin管脚电平(ODR)或获取Pin管脚电平(IDR)
 
 ###### `off()`{:class="method deprecated"}
 使用 `Pin.value(0)` 替代
@@ -121,11 +121,11 @@ MCU所有管脚定义 例如: `Pin.cpu.A0`
 
 ###### `Pin.port()`{:class="method"}
 
-描述: 返回Pin对应GPIO的索引 0=GPIOA, 1=GPIOB,以此类推
+返回Pin对应GPIO的索引 0=GPIOA, 1=GPIOB,以此类推
 
 ###### `Pin.gpio()`{:class="method"}
 
-描述: 返回Pin对应GPIO绝对地址
+返回Pin对应GPIO绝对地址
 
 因为底层使用`small_int`, 即实际地址左移后或1, 有效范围31bit, 已不能直接表示物理内存地址
 
@@ -133,18 +133,18 @@ MCU所有管脚定义 例如: `Pin.cpu.A0`
 
 ###### `Pin.mode()`{:class="method"}
 
-描述: 返回Pin的工作模式, 参考Pin类常量
+返回Pin的工作模式, 参考Pin类常量
 
 ###### `Pin.pull()`{:class="method"}
 
-描述: 返回Pin 上/下拉配置, 参考Pin类常量, 0-无上拉下拉
+返回Pin 上/下拉配置, 参考Pin类常量, 0-无上拉下拉
 
 ###### `Pin.af_list()`{:class="method"}
 
-描述: 返回Pin可用的复用外设列表
+返回Pin可用的复用外设列表
 
 ###### `Pin.af()`{:class="method"}
     
-描述: 返回Pin配置的复用外设 AFx_XXX
+返回Pin配置的复用外设 AFx_XXX
 
 > 这里始终返回`0`, 因STM32F1中, 管脚配置复用后， 最后一个启用的外设有效, 且初始化传入的af仅用于参数检查

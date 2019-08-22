@@ -13,7 +13,7 @@ category: machine
 
 对于0-15, 一个给定的中断线可以映射到任意GPIO的对应Pin, 例如 中断线0 可以映射到 Px0(x可以是A,B,C,...)
 
-注意: `ExtInt`构造会自动配置传入Pin为输入模式
+> `ExtInt`构造会自动配置传入Pin为输入模式
 
 ```python
 from machine import ExtInt,Pin
@@ -24,7 +24,7 @@ def callback(line):
 extint = ExtInt(pin, ExtInt.IRQ_FALLING, Pin.PULL_UP, callback)
 ```
 
-**尝试注册2个回调到同一中断线会抛出一个异常**
+> 尝试注册2个回调到同一中断线会抛出一个异常
 
 如果pin参数传入一个`integer`, 将会被认为是一个内部中断线, 则必须是 16,17  
 所有其他情况则必须传入一个`Pin`对象
@@ -39,7 +39,7 @@ extint = ExtInt(pin, ExtInt.IRQ_FALLING, Pin.PULL_UP, callback)
 
 ###### `ExtInt.regs()`{:class="method"}
     
-说明: 打印6个寄存器的值
+打印6个寄存器的值
 
 
 #### 类常量 {#class-const}
@@ -83,16 +83,16 @@ k1 = ExtInt(Pin.cpu.A1, ExtInt.IRQ_FALLING, Pin.PULL_UP, callback)
 
 ###### `ExtInt.line()`{:class="method"}
     
-说明: 返回引脚所映射的中断线(0~17)
+返回引脚所映射的中断线(0~17)
 
 ###### `ExtInt.enable()`{:class="method"}
     
-说明: 启用中断线
+启用中断线
 
 ###### `ExtInt.disable()`{:class="method"}
     
-说明: 禁用中断线
+禁用中断线
 
 ###### `ExtInt.swint()`{:class="method"}
     
-说明: 软件触发中断线
+软件触发中断线
