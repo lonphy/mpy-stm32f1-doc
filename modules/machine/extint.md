@@ -15,7 +15,7 @@ category: machine
 
 > `ExtInt`构造会自动配置传入Pin为输入模式
 
-```python
+```py
 from machine import ExtInt,Pin
 
 def callback(line):
@@ -38,7 +38,7 @@ extint = ExtInt(pin, ExtInt.IRQ_FALLING, Pin.PULL_UP, callback)
 #### 类方法
 
 ###### `ExtInt.regs()`{:class="method"}
-    
+
 打印6个寄存器的值
 
 
@@ -70,7 +70,7 @@ extint = ExtInt(pin, ExtInt.IRQ_FALLING, Pin.PULL_UP, callback)
 
 > 使用构造函数, 会自动使传入引脚被配置为输入模式, 根据pull不同值被配置为浮空/上拉/下拉
 
-```python
+```py
 from machine import ExtInt,Pin
 
 def callback(line):
@@ -82,17 +82,17 @@ k1 = ExtInt(Pin.cpu.A1, ExtInt.IRQ_FALLING, Pin.PULL_UP, callback)
 #### 实例方法
 
 ###### `ExtInt.line()`{:class="method"}
-    
+
 返回引脚所映射的中断线(0~17)
 
 ###### `ExtInt.enable()`{:class="method"}
-    
+
 启用中断线
 
 ###### `ExtInt.disable()`{:class="method"}
-    
+
 禁用中断线
 
 ###### `ExtInt.swint()`{:class="method"}
-    
+
 软件触发中断线

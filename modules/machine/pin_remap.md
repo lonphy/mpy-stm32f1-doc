@@ -7,15 +7,15 @@ category: machine
 ---
 
 管脚重映射(machine.PinRemap)
-    
+
 
 #### 类方法
 
 ###### `PinRemap.remap(phriph [, value])`{:class="method"}
-    
+
 获取或配置管脚映射
 
-参数: 
+参数:
 - `phriph`, 参考 [Pin重映射外设](#const_phriph)
 - `value`, 可选, 参考 [Pin重映射值](#const_values)
 

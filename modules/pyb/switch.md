@@ -11,7 +11,7 @@ category: pyb
 Switch单例 用于控制一个按钮开关
 示例:
 
-```python
+```py
 import pyb
 
 sw = pyb.Switch()       # 创建开关实例
@@ -37,7 +37,7 @@ pyb.Switch().callback(lambda: pyb.LED(1).toggle())
 
 
 ###### `pyb.Switch.value()`{:class="method"}
-     
+
 获取开关状态：True-按下, False-未按下
 
 

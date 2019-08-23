@@ -12,7 +12,7 @@ category: pyb
 
 示例:
 
-```python
+```py
 import pyb
 
 accel = pyb.Accel()
@@ -33,7 +33,7 @@ for i in range(10):
 > 所以, 在创建与获取值之间要么有其他代码， 要么插入延时
 
 例如:
-```python
+```py
 import pyb
 
 accel = pyb.Accel()

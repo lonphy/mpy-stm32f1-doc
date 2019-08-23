@@ -11,11 +11,11 @@ category: pyb
 
 综合示例:
 
-```python
-import machine
+```py
+import pyb
 import time
 
-led1 = machine.LED(1)
+led1 = pyb.LED(1)
 
 led1.on()
 led1.off()
@@ -79,7 +79,7 @@ for x in range(10):
 ```
 > 当然也可以直接用`machine.Timer.channel`实现:
 
-```python
+```py
 from machine import Pin, Timer
 
 t2 = Timer(2)

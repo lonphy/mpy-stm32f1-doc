@@ -41,13 +41,13 @@ This method does nothing. It exists so the USB_VCP object can act as a file.
 
 读取最多 `nbytes`字节数据， 返回 `bytes`对象。
 
-如果`nbytes`未指定，则读取底层所有可读数据(已经收到的数据), 
+如果`nbytes`未指定，则读取底层所有可读数据(已经收到的数据),
 
 `USB_VCP`流实现为非阻塞模式， 所以如果底层缓冲没有数据, 会立即返回`None`
 
 ###### `pyb.USB_VCP.readinto(buf[, maxlen])`{:class="method"}
 
-读取字节数组存储到`buf`对象中， 通常len(buf)是需要读取的数据大小. 
+读取字节数组存储到`buf`对象中， 通常len(buf)是需要读取的数据大小.
 
 如果同时提供`maxlen`参数, 那么最大可读取 `min(maxlen, len(buf))` 字节的数据
 
@@ -71,7 +71,7 @@ This method does nothing. It exists so the USB_VCP object can act as a file.
 
 ###### `pyb.USB_VCP.recv(data, *, timeout=5000)`{:class="method"}
 
-从USB接受数据, 
+从USB接受数据
 
 `data`参数可以是一个数字, 表示需要接收的字节数, 或者一个可变缓冲用于填充接收到的数据
 

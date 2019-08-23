@@ -10,7 +10,7 @@ machine 模块提供GPIO、管脚映射、外设类、MCU频率设置、查看�
 #### 模块方法
 
 ###### `machine.info()`{:class="method"}
-    
+
 打印MCU信息
 
 ```
@@ -107,7 +107,7 @@ __TODO__
 
 - [DAC]({% link modules/machine/dac.md %}) - 数模转换
 
-- [Signal]({% link modules/machine/signal.md %}) - 
+- [Signal]({% link modules/machine/signal.md %}) -
 
 - [I2C]({% link modules/machine/i2c.md %}) - I2C通讯总线
 

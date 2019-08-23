@@ -8,12 +8,12 @@ category: machine
 
 
 管脚(machine.Pin)
-    
+
 
 #### 类方法
 
 ###### `Pin.debug([state=False])`{:class="method"}
-    
+
 打开或关闭Pin调试模式, 并返回当前模式
 > 调试模式只在查找Pin使用`mapper`/`dict`时有效
 
@@ -25,7 +25,7 @@ category: machine
 
 设置或获取管脚名映射函数
 
-```python
+```py
 import machine
 
 def pin_mapper(pin_name):
@@ -39,8 +39,8 @@ machine.Pin.mapper()           # get mapper
 ###### `Pin.dict([dict])`{:class="method"}
 
 设置或获取管脚映射字典
-    
-```python
+
+```py
 import machine
 
 m = {'led1': machine.Pin.cpu.A1}
@@ -80,7 +80,7 @@ MCU所有管脚定义 例如: `Pin.cpu.A0`
 
 初始化Pin
 
-参数:  
+参数:
 * `mode` - 运行模式 (参考 类属性->常量定义->工作模式)
 * `pull` - 输入上/下拉电阻, None表示不设置 (参考 类属性->常量定义->上拉下拉)
 * `af`   - 外设复用组, 参考 ports/stm32f1/boards/stm32f103xx_af.csv
@@ -88,7 +88,7 @@ MCU所有管脚定义 例如: `Pin.cpu.A0`
 * `alt`   - 同 `af`, 优先级更高
 
 ###### `Pin.name()`{:class="method"}
-     
+
 返回Pin名称
 
 ###### `Pin.names()`{:class="method"}
@@ -144,7 +144,7 @@ MCU所有管脚定义 例如: `Pin.cpu.A0`
 返回Pin可用的复用外设列表
 
 ###### `Pin.af()`{:class="method"}
-    
+
 返回Pin配置的复用外设 AFx_XXX
 
 > 这里始终返回`0`, 因STM32F1中, 管脚配置复用后， 最后一个启用的外设有效, 且初始化传入的af仅用于参数检查

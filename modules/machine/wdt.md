@@ -7,12 +7,12 @@ category: machine
 ---
 
 
-独立看门狗(pyb.WDT)
+独立看门狗(machine.WDT)
 
 #### 方法
 
 ###### `WDT(id, timeout)`{:class="method"}
-    
+
 构造方法, 创建独立看门狗
 
 参数:
@@ -36,11 +36,11 @@ category: machine
 
 #### 综合示例
 
-```python
-import pyb
+```py
+import machine
 
-# pyb.WDT
-wdt = pyb.WDT(0, 1000)
+# machine.WDT
+wdt = machine.WDT(0, 1000)
 
 for True:
     pass # do something

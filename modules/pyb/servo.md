@@ -9,10 +9,10 @@ category: pyb
 `pyb.Servo`类 用于驱动 hobby-3线伺服电机
 
 
-`Servo` 可控制标准hobby 3线(VDD,GND,1根信号线)伺服电机. 
+`Servo` 可控制标准hobby 3线(VDD,GND,1根信号线)伺服电机
 
 示例:
-```python
+```py
 import pyb
 
 s1 = pyb.Servo(1)
@@ -47,7 +47,6 @@ s2.angle(30, 1500)  # 电机2 使用1.5s 转到30 deg
 
 
 ###### `pyb.Servo.speed([speed, time=0])`{:class="method"}
-     
 
 无参数 - 返回电机当前转速
 
