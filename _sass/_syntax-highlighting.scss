@@ -3,10 +3,8 @@
  */
  .highlight {
     background: #eaeaea;
-    padding: 0.1em 1em;
+    padding: 0.1em 10px;
     border-radius: 5px;
-    width: auto;
-    width: 80%;
 
     @extend %vertical-rhythm;
   
