@@ -67,7 +67,7 @@ This method does nothing. It exists so the USB_VCP object can act as a file.
 
 ###### `pyb.USB_VCP.write(buf)`{:class="method"}
 
-发送bytes数据, 返回写入字节数
+发送缓冲数据, 返回写入字节数
 
 ###### `pyb.USB_VCP.recv(data, *, timeout=5000)`{:class="method"}
 

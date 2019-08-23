@@ -1,4 +1,12 @@
 .post-content {
+
+    code.highlighter-rouge {
+        color: #0a305e;
+        padding: 0 3px;
+        text-shadow: 1px 1px 1px #eee;
+        font-weight: 500;
+    }
+
     h4 {
         font-size: 1.5rem;
         padding-bottom: 1rem;
@@ -67,24 +75,24 @@
 
 
 .method {
-    font-size: 1.2rem;
-    font-weight: 400;
     line-height: 1.25;
     position: relative;
-    padding: 0 10px 3px 60px;
+    padding: 0 10px 3px 60px !important;
+    text-shadow: initial !important;
     text-indent: 60px;
     border-bottom: solid 1px rgb(192, 162, 162);
-    font-family: Verdana, sans-serif;
+    font: 500 1.1rem Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+    
 
     &::before {
-        content: "Method";
+        content: "method";
         font-size: 0.9rem;
         font-weight: 400;
         color: #999;
         font-style: italic;
         position: absolute;
         left: -56px;
-        bottom: 2px;
+        bottom: 3px;
     }
 }
 

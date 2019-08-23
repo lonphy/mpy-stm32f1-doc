@@ -87,31 +87,33 @@ __TODO__
 
 #### 模块包含的类
 
+- [ExtInt]({% link modules/machine/extint.md %}) - 外部中断及事件
+
+- [RTC]({% link modules/machine/rtc.md %}) - 实时时钟
+
+- [Pin]({% link modules/machine/pin.md %}) - 管脚
+
+- [PinRemap]({% link modules/machine/pin_remap.md %}) - 管脚重映射
+
+- [UART]({% link modules/machine/uart.md %}) - 串行通讯收发器
+
+- [WDT]({% link modules/machine/wdt.md %}) - 独立看门狗
+
+> 以下模块未完全测试验证
+
 - [ADC]({% link modules/machine/adc.md %}) - 模数转换
 
 - [CAN]({% link modules/machine/can.md %}) - 控制器局域网
 
 - [DAC]({% link modules/machine/dac.md %}) - 数模转换
 
-- [ExtInt]({% link modules/machine/extint.md %}) - 外部中断及事件[OK]
-
 - [Signal]({% link modules/machine/signal.md %}) - 
 
-- [RTC]({% link modules/machine/rtc.md %}) - 实时时钟[__OK__, 未全面严格测试]
-
 - [I2C]({% link modules/machine/i2c.md %}) - I2C通讯总线
-
-- [Pin]({% link modules/machine/pin.md %}) - 管脚[__OK__, PinAF部分未严格测试]
-
-- [PinRemap]({% link modules/machine/pin_remap.md %}) - 管脚重映射
 
 - [SPI]({% link modules/machine/spi.md %}) - SPI通讯总线
 
 - [Timer]({% link modules/machine/timer.md %}) - 硬件定时器
-
-- [UART](m{% link modules/machine/uart.md %}) - 异步串行通讯收发器[__OK__, 未全面严格测试]
-
-- [WDT]({% link modules/machine/wdt.md %}) - 独立看门狗[OK]
 
 - `mem8` -- <8-bit memory>
 - `mem16` -- <16-bit memory>

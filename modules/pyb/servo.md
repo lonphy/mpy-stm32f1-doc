@@ -70,8 +70,8 @@ s2.angle(30, 1500)  # 电机2 使用1.5s 转到30 deg
 
 否则 用于设置延时校准:
 
-`pulse_min` 最小脉宽
-`pulse_max` 最大脉宽
-`pulse_centre` 零点/中心脉宽
-`pulse_angle_90` 90度脉宽
-`pulse_speed_100` 速度100时的脉宽
+- `pulse_min` 最小脉宽
+- `pulse_max` 最大脉宽
+- `pulse_centre` 零点/中心脉宽
+- `pulse_angle_90` 90度脉宽
+- `pulse_speed_100` 速度100时的脉宽
