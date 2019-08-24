@@ -89,15 +89,18 @@ __TODO__
 
 - [ExtInt]({% link modules/machine/extint.md %}) - 外部中断及事件
 
-- [RTC]({% link modules/machine/rtc.md %}) - 实时时钟
+- [I2C]({% link modules/machine/i2c.md %}) - I2C通讯总线
+
+- [PinRemap]({% link modules/machine/pin_remap.md %}) - 管脚重映射
 
 - [Pin]({% link modules/machine/pin.md %}) - 管脚
 
-- [PinRemap]({% link modules/machine/pin_remap.md %}) - 管脚重映射
+- [RTC]({% link modules/machine/rtc.md %}) - 实时时钟
 
 - [UART]({% link modules/machine/uart.md %}) - 串行通讯收发器
 
 - [WDT]({% link modules/machine/wdt.md %}) - 独立看门狗
+
 
 > 以下模块未完全测试验证
 
@@ -108,8 +111,6 @@ __TODO__
 - [DAC]({% link modules/machine/dac.md %}) - 数模转换
 
 - [Signal]({% link modules/machine/signal.md %}) -
-
-- [I2C]({% link modules/machine/i2c.md %}) - I2C通讯总线
 
 - [SPI]({% link modules/machine/spi.md %}) - SPI通讯总线
 
