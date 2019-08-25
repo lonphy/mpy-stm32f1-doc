@@ -28,10 +28,9 @@ vfs 信息
 
 ###### `machine.freq(sysclk, hclk, pclk1, pclk2)`{:class="method"}
 
-返回或设置MCU运行频率
-> 在stm32f103中, 返回(sysclk, hclk, pclk1, pclk2)
+无参数 返回(sysclk, hclk, pclk1, pclk2)
 
-设置时如果只提供sysclk, 则:
+有参数, 设置MCU运行频率, 如果只提供sysclk, 则:
 - hclk=sysclk
 - pclk1=sysclk/2
 - pclk2=sysclk
@@ -97,6 +96,8 @@ __TODO__
 
 - [RTC]({% link modules/machine/rtc.md %}) - 实时时钟
 
+- [SPI]({% link modules/machine/spi.md %}) - 同步串行通讯总线
+
 - [UART]({% link modules/machine/uart.md %}) - 串行通讯收发器
 
 - [WDT]({% link modules/machine/wdt.md %}) - 独立看门狗
@@ -111,8 +112,6 @@ __TODO__
 - [DAC]({% link modules/machine/dac.md %}) - 数模转换
 
 - [Signal]({% link modules/machine/signal.md %}) -
-
-- [SPI]({% link modules/machine/spi.md %}) - SPI通讯总线
 
 - [Timer]({% link modules/machine/timer.md %}) - 硬件定时器
 
