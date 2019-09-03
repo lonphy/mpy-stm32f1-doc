@@ -86,6 +86,8 @@ __TODO__
 
 #### 模块包含的类
 
+- [DAC]({% link modules/machine/dac.md %}) - 数模转换
+
 - [ExtInt]({% link modules/machine/extint.md %}) - 外部中断及事件
 
 - [I2C]({% link modules/machine/i2c.md %}) - I2C通讯总线
@@ -96,7 +98,11 @@ __TODO__
 
 - [RTC]({% link modules/machine/rtc.md %}) - 实时时钟
 
+- [Signal]({% link modules/machine/signal.md %}) - 逻辑信号控制类
+
 - [SPI]({% link modules/machine/spi.md %}) - 同步串行通讯总线
+
+- [Timer]({% link modules/machine/timer.md %}) - 硬件定时器
 
 - [UART]({% link modules/machine/uart.md %}) - 串行通讯收发器
 
@@ -109,11 +115,6 @@ __TODO__
 
 - [CAN]({% link modules/machine/can.md %}) - 控制器局域网
 
-- [DAC]({% link modules/machine/dac.md %}) - 数模转换
-
-- [Signal]({% link modules/machine/signal.md %}) -
-
-- [Timer]({% link modules/machine/timer.md %}) - 硬件定时器
 
 - `mem8` -- <8-bit memory>
 - `mem16` -- <16-bit memory>
