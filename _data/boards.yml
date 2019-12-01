@@ -1,4 +1,18 @@
-- title: 启明欣欣F103
+- title: MPY-ST103 (STM32F103ZG)
+  url: "/#"
+  image: mpy-st103-v1.4.jpg
+  desc: "* STM32F103ZGT6 ARM Cortex M3 / 72MHz, <b class='r'>1024KB</b> Flash, 96KB SRAM<br>
+* SPI Flash-<b class='r'>W25Q128</b> / SRAM-<b class='r'>IS62WV51216</b> / NorFlash-<b class='r'>S29GL128P10</b> <br>
+* RTC 电池座(CR1220)<br>
+* LCD液晶屏接口(FSMC 8/16bit) & Touch(SPI)<br>
+* 无源蜂鸣器(PWM/GPIO驱动) / 4个高亮LED(4色,<b class='r'>支持PWM控制</b>)<br>
+* USB转串口CH340C(USART1)<br>
+* ESP8266-01/S1/ MicroSD 插座<br>
+* 双通道DAC直接引出<br>
+* OLED(I2C)接口<br>
+* SWD 3Pin 调试接口"
+
+- title: 启明欣欣F103 (STM32F103RC)
   url: "/#"
   image: qiming103.jpg
   desc: "* STM32F103RCT6 ARM Cortex M3 / 72MHz, 256 KB Flash, 64KB SRAM<br>
@@ -13,7 +27,7 @@
 * JTAG/SWD 20Pin 调试接口"
 
 
-- title: SR139-F103ZE
+- title: SR139 (STM32F103ZE)
   url: "/#"
   image: sr139.jpg
   desc: "* STM32F103ZET6 ARM Cortex M3 / 72MHz, 512 KB Flash, 64KB SRAM<br>
@@ -22,6 +36,7 @@
 * SRAM IS62WV51216<br>
 * 2.8寸液晶屏(FSMC)<br>
 * JTAG/SWD 20Pin 调试接口"
+
 
 
 #- title: STM32F103VE

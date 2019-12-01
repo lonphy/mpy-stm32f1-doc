@@ -1,0 +1,42 @@
+.download {
+    min-height: calc(100vh - 92px);
+
+
+    h2 {
+        font-size: 24px;
+    }
+    h4 {
+        margin-top: 40px;
+        font-size: 16px;
+        border-bottom: solid 1px #ccc;
+        line-height: 32px;
+        position: relative;
+        padding-left: 28px;
+        font-weight: bolder;
+
+        &::before {
+            font-family: 'Material Icons';
+            text-rendering: optimizeLegibility;
+            -webkit-font-feature-settings: 'liga';
+            -moz-font-feature-settings: 'liga';
+            font-feature-settings: 'liga';
+            content: "developer_boards";
+            font-size: 24px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #7d2a21;
+        }
+    }
+
+    ul {
+        display: flex;
+        list-style: none;
+    }
+
+    li {
+        min-width: 64px;
+        flex: 1;
+        list-style: none !important;
+    }
+}

@@ -5,8 +5,8 @@
         <div class="section no-pad-bot">
             <div class="container">
                 <br><br>
-                <h1 class="header center teal-text text-lighten-2">{{ site.title }}</h1>
-                <div class="row center">
+                <h1 class="header center teal-text text-lighten-2 site-title">{{ site.title }}</h1>
+                <div class="row center site-desc">
                     <h5 class="header col s12 light">{{ site.description }}</h5>
                 </div>
             </div>
@@ -16,8 +16,8 @@
 </div>
 
 <div class="container" style="padding:20px;">
-    <section id="boards" class="section scrollspy">
-        <h3 style="text-align:center;">{{site.boards-title}}</h3>
+    <section id="boards" class="section scrollspy boards">
+        <h3 style="text-align:center;">{{site.boards-title}} <a href="/download/">固件下载</a></h3>
         {% include board_layout.html %}
     </section>
 </div>
