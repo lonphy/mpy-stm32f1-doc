@@ -1,5 +1,5 @@
 - title: MPY-ST103 (STM32F103ZG)
-  url: "/#"
+  url: "/tutorial/mpy-st103/get_started.html"
   image: mpy-st103-v1.4.jpg
   desc: "* STM32F103ZGT6 ARM Cortex M3 / 72MHz, <b class='r'>1024KB</b> Flash, 96KB SRAM<br>
 * SPI Flash-<b class='r'>W25Q128</b> / SRAM-<b class='r'>IS62WV51216</b> / NorFlash-<b class='r'>S29GL128P10</b> <br>
