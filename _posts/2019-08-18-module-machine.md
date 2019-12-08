@@ -49,7 +49,7 @@ vfs 信息
 
 ###### `machine.bootloader()`{:class="method"}
 
-__TODO__
+进入Bootloader, 在无Bootloader的情况下相当于重启
 
 ###### `machine.idle()`{:class="method"}
 
@@ -86,6 +86,10 @@ __TODO__
 
 #### 模块包含的类
 
+- [ADC]({% link modules/machine/adc.md %}) - 模数转换
+
+- [ADCAll]({% link modules/machine/adc.md %}) - 模数转换
+
 - [DAC]({% link modules/machine/dac.md %}) - 数模转换
 
 - [ExtInt]({% link modules/machine/extint.md %}) - 外部中断及事件
@@ -97,6 +101,8 @@ __TODO__
 - [Pin]({% link modules/machine/pin.md %}) - 管脚
 
 - [RTC]({% link modules/machine/rtc.md %}) - 实时时钟
+
+- [SDCard]({% link modules/machine/sdcard.md %}) - SD卡管理
 
 - [Signal]({% link modules/machine/signal.md %}) - 逻辑信号控制类
 
@@ -111,10 +117,7 @@ __TODO__
 
 > 以下模块未完全测试验证
 
-- [ADC]({% link modules/machine/adc.md %}) - 模数转换
-
 - [CAN]({% link modules/machine/can.md %}) - 控制器局域网
-
 
 - `mem8` -- <8-bit memory>
 - `mem16` -- <16-bit memory>
