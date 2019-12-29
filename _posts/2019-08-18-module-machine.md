@@ -5,7 +5,7 @@ date:   2019-08-18 0:0:0 +0000
 image: /assets/images/machine.jpg
 ---
 
-machine 模块提供GPIO、管脚映射、外设类、MCU频率设置、查看系统信息等功能
+machine 模块提供各种外设封装
 
 #### 模块方法
 

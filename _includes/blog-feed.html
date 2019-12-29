@@ -1,8 +1,8 @@
 <div class="row">
     {% for post in site.posts %}
         {% if post.category == nil %}
-        <div class="col s12 m6">
-            <div class="card">
+        <div class="col s12 m4">
+            <div class="card post-card">
                 <div class="card-image">
                     <img src="{{post.image}}">
                     <span class="card-title"><a style="color:white">{{ post.title | escape }}</a></span>

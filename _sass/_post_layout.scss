@@ -63,6 +63,7 @@
         img {
             height: 20rem;
         }
+        max-height: initial !important;
     }
 
     &:hover {
@@ -70,7 +71,11 @@
             filter: blur(2px)
         }
     }
+    &.post-card {
+        img {height: 10rem;}
+    }
 }
+
 
 .post-meta {
     text-align: right
