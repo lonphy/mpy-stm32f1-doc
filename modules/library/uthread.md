@@ -2,7 +2,7 @@
 layout: post
 title:  "_thread 模块"
 date:   2019-12-29 0:0:0 +0000
-image: /assets/images/thread.jpg
+category: library
 ---
 
 `_thread` 包可以提供多个任务同时运行的能力

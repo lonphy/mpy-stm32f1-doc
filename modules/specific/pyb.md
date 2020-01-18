@@ -2,7 +2,6 @@
 layout: post
 title:  "pyb 模块"
 date:   2019-08-18 0:0:0 +0000
-image: /assets/images/pyb.jpg
 ---
 
 pyb包提供一些特定外部或内部模块的驱动

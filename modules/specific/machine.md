@@ -1,8 +1,7 @@
 ---
 layout: post
-title:  "machine 模块"
+title:  "machine 库"
 date:   2019-08-18 0:0:0 +0000
-image: /assets/images/machine.jpg
 ---
 
 machine 模块提供各种外设封装
@@ -20,6 +19,7 @@ MCU unique_id
 qstr信息
 gc 信息
 vfs 信息
+thread 信息(如果开启多线程的话)
 ```
 
 ###### `machine.unique_id()`{:class="method"}

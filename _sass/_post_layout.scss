@@ -1,3 +1,6 @@
+.post-title {
+    font-size: 1.8rem;
+}
 .post-content {
 
     code.highlighter-rouge {
@@ -6,18 +9,40 @@
         text-shadow: 1px 1px 1px #eee;
         font-weight: 500;
     }
+
+    h1 {
+        font-size: 1.6rem;
+    }
+
     h2 {
-        font-size: 2rem;
+        font-size: 1.4rem;
+    }
+
+    h3 {
+        font-size: 1.3rem;
     }
 
     h4 {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         padding-bottom: 1rem;
         border-bottom: solid 1px #ccc;
     }
 
+    h5 {
+        margin-top: 2.4rem;
+        font-size: 1.1rem;
+    }
+
+    h5 + h5 {
+        margin-top: 0.8rem;
+    }
+
     h6 {
+        font-size: 1rem;
         margin-top: 2rem;
+    }
+    h6 + h6 {
+        margin-top:0;
     }
 
     h6~p {
@@ -63,6 +88,7 @@
         img {
             height: 20rem;
         }
+
         max-height: initial !important;
     }
 
@@ -71,8 +97,11 @@
             filter: blur(2px)
         }
     }
+
     &.post-card {
-        img {height: 10rem;}
+        img {
+            height: 10rem;
+        }
     }
 }
 
@@ -81,19 +110,15 @@
     text-align: right
 }
 
-
-.method {
+.method, .func, .class {
     line-height: 1.25;
     position: relative;
-    padding: 0 10px 3px 60px !important;
     text-shadow: initial !important;
     text-indent: 60px;
     border-bottom: solid 1px rgb(192, 162, 162);
     font: 500 1.1rem Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
-    
 
     &::before {
-        content: "method";
         font-size: 0.9rem;
         font-weight: 400;
         color: #999;
@@ -102,6 +127,32 @@
         left: -56px;
         top: 3px;
     }
+}
+
+h5 ~ h6 {
+    .method {
+        margin-left: 1rem;
+        font-size: 0.9rem !important;
+    }
+    &~p {
+        font-size: 0.9rem;
+    }
+}
+
+
+.func {
+    padding: 0 10px 3px 40px !important;
+    &::before{ content: 'func'; }
+}
+
+.class {
+    padding: 0 10px 3px 40px !important;
+    &::before{ content: 'class'; }
+}
+
+.method {
+    padding: 0 10px 3px 60px !important;
+    &::before { content: 'method'; }
 }
 
 .method.deprecated {
@@ -139,7 +190,7 @@
     }
 }
 
-blockquote > p {
+blockquote>p {
     font-size: 0.9rem;
     line-height: 1.6rem;
 }
