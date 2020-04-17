@@ -7,7 +7,7 @@ category: library
 
 `math` 模块提供了一些基础数学函数处理浮点数
 
-> 注意: 在 _pyboard_ 上, 浮点数是32位精度
+> 注意: 在 *pyboard* 上, 浮点数是32位精度
 
 
 方法

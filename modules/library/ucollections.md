@@ -32,7 +32,7 @@ Deques(双端队列)是一个类似列表的容器，它支持以O(1)复杂度�
 
 `namedtuple` 是 `tuple` 的子类, 它可以不仅使用数字索引访问其字段，还可以用字段名符号访问. 字段是字符串序列指定的名称. 
 
-为了与 _CPython_ 兼容, 它也可以是空格分隔的命名字段(效率低一些). 使用示例:
+为了与 *CPython* 兼容, 它也可以是空格分隔的命名字段(效率低一些). 使用示例:
 ```python
 from ucollections import namedtuple
 
@@ -45,7 +45,7 @@ assert t2.name == t2[1]
 
 ##### `ucollections.OrderedDict(...)`{:class="class"}
 
-`dict` 类型的子类, 它可以记住添加的键顺序. 当遍历有序 _dict_ 时, 会按添加的顺序依次返回:
+`dict` 类型的子类, 它可以记住添加的键顺序. 当遍历有序 *dict* 时, 会按添加的顺序依次返回:
 
 ```python
 from ucollections import OrderedDict

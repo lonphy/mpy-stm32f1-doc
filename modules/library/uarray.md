@@ -29,7 +29,7 @@ category: library
 
 使用给定的`typecode`(元素类型)， 创建数组。
 
-初始数组内容由 _iterable_ 提供, 如果为空， 则会创建一个空数组
+初始数组内容由 *iterable* 提供, 如果为空， 则会创建一个空数组
 
 #### array 类实例方法
 

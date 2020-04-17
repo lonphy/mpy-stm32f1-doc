@@ -21,14 +21,14 @@ category: library
 
 ###### `all(iterable)`{:class="func"}
 
-判断给定的可迭代参数 _iterable_ 中的所有元素是否都为 `True`, 如果是返回 `True`, 否则返回 `False`
+判断给定的可迭代参数 *iterable* 中的所有元素是否都为 `True`, 如果是返回 `True`, 否则返回 `False`
 
 元素除了是 `0`, `''`, `None`, `False` 其他算`True`
 
 
 ###### `any(iterable)`{:class="func"}
 
-判断给定的可迭代参数 _iterable_ 中的所有元素是否都为 `False`, 如果是返回 `False`, 否则返回 `True`
+判断给定的可迭代参数 *iterable* 中的所有元素是否都为 `False`, 如果是返回 `False`, 否则返回 `True`
 
 元素除了是 `0`, `''`, `None`, `False` 其他算`True`
 
@@ -41,11 +41,11 @@ category: library
 
 检查一个对象是否是可调用. 如果返回 `True`, obj 可能调用失败；但如果返回 `False`，调用对象 obj 绝对不会成功
 
-对于 _函数_, _方法_, _lambda表达式_, _类_ 以及实现了 __call__ 方法的类实例, 它都返回 `True` 
+对于 *函数*, *方法*, *lambda表达式*, *类* 以及实现了 **call** 方法的类实例, 它都返回 `True` 
 
 ###### `chr(val)`{:class="func"}
 
-返回 _val_ 表示的 assic 字符, _val_ 有效值[0, 255]
+返回 *val* 表示的 assic 字符, *val* 有效值[0, 255]
 
 ###### `classmethod()`{:class="func"}
 装饰器, 指示类方法
@@ -56,14 +56,14 @@ category: library
 
 ###### `dir([obj])`{:class="func"}
 - 不带参数: 返回当前作用域内的变量、方法和定义的类型列表
-- 带参数时: 返回参数的属性、方法列表, 如果obj提供了`__dir__()`方法, 也会被调用
+- 带参数时: 返回参数的属性、方法列表, 如果obj提供了`**dir**()`方法, 也会被调用
 
 ###### `divmod(a, b)`{:class="func"}
 
 把除数和余数运算结果结合起来，返回一个包含商和余数的元组`(a // b, a % b)`
 
 ###### `enumerate()`{:class="func"}
-将一个可遍历的数据对象(如`list`, `tuple`或`string`)组合为一个索引序列，同时列出数据和数据下标，一般用在 __for__ 循环中
+将一个可遍历的数据对象(如`list`, `tuple`或`string`)组合为一个索引序列，同时列出数据和数据下标，一般用在 **for** 循环中
 
 
 ###### `eval()`{:class="func"}
@@ -76,7 +76,7 @@ category: library
 来执行一个文件，并返回表达式的值
 
 ###### `filter(fn, iter)`{:class="func"}
-过滤序列，过滤掉不符合条件的元素( _fn_ 返回`False`)，返回由符合条件元素组成的新列表的迭代器
+过滤序列，过滤掉不符合条件的元素( *fn* 返回`False`)，返回由符合条件元素组成的新列表的迭代器
 
 - `fn` -- 过滤函数
 - `iter` -- 可迭代对象
@@ -120,25 +120,25 @@ category: library
 ###### `max(n, n1, ...)`{:class="func"}
 返回所有参数中的最大值
 
-__n, n1, ...__ 是数值表达式
+**n, n1, ...** 是数值表达式
 
 ###### `min(n, n1, ...)`{:class="func"}
 返回所有参数中的最小值
 
-__n, n1, ...__ 是数值表达式
+**n, n1, ...** 是数值表达式
 
 ###### `next(iter)`{:class="func"}
-获取迭代器 _iter_ 的下一个元素
+获取迭代器 *iter* 的下一个元素
 
 ###### `oct(n)`{:class="func"}
-将一个整数 _n_ 转换成8进制字符串
+将一个整数 *n* 转换成8进制字符串
 
 ###### `open(name [, mode[, buffering]])`{:class="func"}
 打开一个文件，创建一个 `file` 对象
 
-- __name__ -- 文件路径/名称
-- __mode__ -- 打开文件的模式：只读，写入，追加等， 默认只读
-- __buffering__ -- 缓冲大小:
+- **name** -- 文件路径/名称
+- **mode** -- 打开文件的模式：只读，写入，追加等， 默认只读
+- **buffering** -- 缓冲大小:
     - `0` - 无缓冲
     - `1` - 行缓冲
     - `>1` - 指定缓冲大小
@@ -182,7 +182,7 @@ __n, n1, ...__ 是数值表达式
 
 
 ###### `delattr(obj, name)`{:class="func"}
-删除_obj_的_name_属性, 相当于 `del obj.name`.
+删除*obj*的*name*属性, 相当于 `del obj.name`.
 
 ###### `getattr(obj, name [, default])`{:class="func"}
 返回一个对象(`obj`)的属性(`name`)值

@@ -5,213 +5,143 @@ date:   2019-08-18 0:0:0 +0000
 category: library
 ---
 
-"ure" -- simple regular expressions
-***********************************
+`ure` 模块实现了正则表达式操作. 支持的语法是 *CPython* `re`模块的一个子集(实际上是POSIX扩展正则表达式的一个子集).
 
-*This module implements a subset of the corresponding* "CPython"
-*module, as described below. For more information, refer to the
-original CPython documentation:* "re".
+支持的操作符和特殊序列:
 
-This module implements regular expression operations. Regular
-expression syntax supported is a subset of CPython "re" module (and
-actually is a subset of POSIX extended regular expressions).
+- `.` - 匹配任意字符
 
-Supported operators and special sequences are:
+- `[...]` - 匹配字符集。支持单个字符和范围，包括反集(例如: `a - c [^]`).
 
-"."
-   Match any character.
+- `^` - 匹配字符串的开始
 
-"[...]"
-   Match set of characters. Individual characters and ranges are
-   supported, including negated sets (e.g. "[^a-c]").
+- `$` - 匹配字符串结尾
 
-"^"
-   Match the start of the string.
+- `?` - 匹配 0 或 1 个 前面的子模式.
 
-"$"
-   Match the end of the string.
+- `*` - 匹配 0 或 多 个 前面的子模式.
 
-"?"
-   Match zero or one of the previous sub-pattern.
+- `+` - 匹配 1 或 多 个 前面的子模式.
 
-"*"
-   Match zero or more of the previous sub-pattern.
+- `??` - 惰性版本的 `?`, 匹配 0 个 或 1个， 0优先.
 
-"+"
-   Match one or more of the previous sub-pattern.
+- `*?` - 惰性版本的 `*`, 匹配 0 个 或 多个， 更短优先.
 
-"??"
-   Non-greedy version of "?", match zero or one, with the preference
-   for zero.
+- `+?` - 惰性版本的 `+`, 匹配 1 个 或 多个， 更短优先.
 
-"*?"
-   Non-greedy version of "*", match zero or more, with the preference
-   for the shortest match.
+- `|` - 匹配该操作符的左或右侧子模式.
 
-"+?"
-   Non-greedy version of "+", match one or more, with the preference
-   for the shortest match.
+- `(...)` - 分组. 捕获分组(可通过`match.group()`方法访问捕获的子字符串).
 
-"|"
-   Match either the left-hand side or the right-hand side sub-patterns
-   of this operator.
+- `\d` - 匹配数字, 与 `[0-9]` 等效
 
-"(...)"
-   Grouping. Each group is capturing (a substring it captures can be
-   accessed with "match.group()" method).
+- `\D` - 匹配非数字, 与 `[^0-9]` 等效
 
-"\d"
-   Matches digit. Equivalent to "[0-9]".
+- `\s` - 匹配空白字符. 与 `[ \t-\r]` 等效
 
-"\D"
-   Matches non-digit. Equivalent to "[^0-9]".
+- `\S` - 匹配非空白字符. 与 `[^ \t-\r]` 等效
 
-"\s"
-   Matches whitespace. Equivalent to "[ \t-\r]".
+- `\w` - 匹配单词字符(仅 *ASCII*). 与 `[A-Za-z0-9_]` 等效
 
-"\S"
-   Matches non-whitespace. Equivalent to "[^ \t-\r]".
+- `\W` - 匹配非单词字符(仅 *ASCII*). 与 `[^A-Za-z0-9_]` 等效
 
-"\w"
-   Matches "word characters" (ASCII only). Equivalent to
-   "[A-Za-z0-9_]".
+- `\` - 转义字符. 除上述字符外，`\` 后面的任何其他字符都按字面意义处理. 例如 `\*` 匹配`*`本身(不是通配符), 另外 `\r`和`\n` 并不会转义处理, 因此不建议用 `r""`的形式书写正则表达式. 若要匹配需要用字符串拼接.
 
-"\W"
-   Matches non "word characters" (ASCII only). Equivalent to
-   "[^A-Za-z0-9_]".
+**不支持**:
 
-"\"
-   Escape character. Any other character following the backslash,
-   except for those listed above, is taken literally. For example,
-   "\*" is equivalent to literal "*" (not treated as the "*"
-   operator). Note that "\r", "\n", etc. are not handled specially,
-   and will be equivalent to literal letters "r", "n", etc. Due to
-   this, it's not recommended to use raw Python strings ("r""") for
-   regular expressions. For example, "r"\r\n"" when used as the
-   regular expression is equivalent to ""rn"". To match CR character
-   followed by LF, use ""\r\n"".
+* 重复计数 (`{m,n}`)
 
-**NOT SUPPORTED**:
+* 命名分组 (`(?P<name>...)`)
 
-* counted repetitions ("{m,n}")
+* 非捕获分组 (`(?:...)`)
 
-* named groups ("(?P<name>...)")
+* 高级断言 (`\b`, `\B`)
 
-* non-capturing groups ("(?:...)")
+* 特殊转移字符 `\r`, `\n` - 使用 *Python* 本身的代替
 
-* more advanced assertions ("\b", "\B")
+* 等等.
 
-* special character escapes like "\r", "\n" - use Python's own
-  escaping instead
-
-* etc.
-
-Example:
+例如:
 
 ```python
 import ure
 
-# As ure doesn't support escapes itself, use of r"" strings is not
-# recommended.
+# 由于 ure 不支持转义书写换行, 所以不用 r"" 表达式
 regex = ure.compile("[\r\n]")
 
 regex.split("line1\rline2\nline3\r\n")
 
-# Result:
+# 结果:
 # ['line1', 'line2', 'line3', '', '']
 ```
 
-Functions
+模块函数
 =========
 
-ure.compile(regex_str[, flags])
+##### `ure.compile(regex_str[, flags])`{:class="func"}
 
-   Compile regular expression, return regex object.
-
-ure.match(regex_str, string)
-
-   Compile *regex_str* and match against *string*. Match always
-   happens from starting position in a string.
-
-ure.search(regex_str, string)
-
-   Compile *regex_str* and search it in a *string*. Unlike "match",
-   this will search string for first position which matches regex
-   (which still may be 0 if regex is anchored).
-
-ure.sub(regex_str, replace, string, count=0, flags=0)
-
-   Compile *regex_str* and search for it in *string*, replacing all
-   matches with *replace*, and returning the new string.
-
-   *replace* can be a string or a function.  If it is a string then
-   escape sequences of the form "\<number>" and "\g<number>" can be
-   used to expand to the corresponding group (or an empty string for
-   unmatched groups). If *replace* is a function then it must take a
-   single argument (the match) and should return a replacement string.
-
-   If *count* is specified and non-zero then substitution will stop
-   after this many substitutions are made.  The *flags* argument is
-   ignored.
-
-   Note: availability of this function depends on "MicroPython port".
-
-ure.DEBUG
-
-   Flag value, display debug information about compiled expression.
-   (Availability depends on "MicroPython port".)
+编译正则表达式, 返回 正则表达式 对象.
 
 
-Regex objects
+##### `ure.match(regex_str, string)`{:class="func"}
+
+编译 *regex_str* 并匹配  *string*. 匹配总是从字符串的起始位置开始.
+
+
+##### `ure.search(regex_str, string)`{:class="func"}
+
+编译 *regex_str* 并在 *string* 中搜索. 与`match`不同的是, 它将搜索与正则匹配的第一个位置.
+
+##### `ure.sub(regex_str, replace, string, count=0, flags=0)`{:class="func"}
+
+编译 *regex_str* 并在 *string* 中搜索, 用 *replace* 替换所有匹配项，并返回新字符串.
+
+*replace* 可为以下类型:
+- **字符串**, 可使用 `\<number>` 和 `\g<number>` 转义序列展开到相应组(或用空字符串表示未匹配到).
+- **回调函数**, 则必须接收单个参数(匹配到的内容)并返回一个替换字符串.
+
+如果指定了 *count* 且 *非0* ，那么替换只会执行 *count* 次, 然后停止
+
+*flags* 参数 未用到
+
+
+`Regex` 对象
 =============
 
-Compiled regular expression. Instances of this class are created using
-"ure.compile()".
+已编译好的正则表达式. 使用 `ure.compile()` 创建该类实例.
 
-regex.match(string)
-regex.search(string)
-regex.sub(replace, string, count=0, flags=0)
+##### `regex.match(string)`{:class="method"}
+##### `regex.search(string)`{:class="method"}
+##### `regex.sub(replace, string, count=0, flags=0)`{:class="method"}
+类似于模块的`match()`、`search()`和`sub()`函数. 若编译后的正则表达式对象 用于多次处理字符串， 则效率比模块对应的方法高得多.
 
-   Similar to the module-level functions "match()", "search()" and
-   "sub()". Using methods is (much) more efficient if the same regex
-   is applied to multiple strings.
+##### `regex.split(string, max_split=-1)`{:class="method"}
 
-regex.split(string, max_split=-1)
+使用 *regex* 分割 *string*。如果给定了 *max_split*, 它指定要执行的最大分割数.
 
-   Split a *string* using regex. If *max_split* is given, it specifies
-   maximum number of splits to perform. Returns list of strings (there
-   may be up to *max_split+1* elements if it's specified).
+返回字符串列表(如果指定了 *max_split* 的话，可能有*max_split+1*个元素).
 
 
-Match objects
+`Match` 对象
 =============
 
-Match objects as returned by "match()" and "search()" methods, and
-passed to the replacement function in "sub()".
+Match 对象 由 `match()`和`search()`方法返回，并传递给`sub()`的 *replace* 回调函数.
 
-match.group(index)
+##### `match.group(index)`{:class="method"}
 
-   Return matching (sub)string. *index* is 0 for entire match, 1 and
-   above for each capturing group. Only numeric groups are supported.
+返回匹配到的(子)字符串。*index* 对于整个匹配项为0，对于每个捕获分组 >=1. 
 
-match.groups()
+##### `match.groups()`{:class="method"}
 
-   Return a tuple containing all the substrings of the groups of the
-   match.
+返回包含匹配分组的所有子字符串的元组.
 
-   Note: availability of this method depends on "MicroPython port".
 
-match.start([index])
-match.end([index])
+##### `match.start([index])`{:class="method"}
+##### `match.end([index])`{:class="method"}
+返回 匹配的子字符串组 的 *开始* 或 *结束* 在 原始字符串中的位置。*index* 默认为整个组，其他情况表示对应的匹配分组.
 
-   Return the index in the original string of the start or end of the
-   substring group that was matched.  *index* defaults to the entire
-   group, otherwise it will select a group.
 
-   Note: availability of these methods depends on "MicroPython port".
+##### `match.span([index])`{:class="method"}
 
-match.span([index])
+返回二元组 `(match.start(index)， match.end(index))`
 
-   Returns the 2-tuple "(match.start(index), match.end(index))".
-
-   Note: availability of this method depends on "MicroPython port".

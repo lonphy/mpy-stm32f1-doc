@@ -12,9 +12,9 @@ category: library
 
 - `EEXIST`, `EAGAIN`, ...
 
-    错误码, 基于 _ANSI C/POSIX_ 标准. 所有错误码以 __E__开头.
+    错误码, 基于 *ANSI C/POSIX* 标准. 所有错误码以 **E**开头.
     
-    如上所述，错误码集合取决于 _MicroPython_ 平台, 错误通常可以通过 `exc.args[0]`来访问,
+    如上所述，错误码集合取决于 *MicroPython* 平台, 错误通常可以通过 `exc.args[0]`来访问,
     其中`exc`是`OSError`的实例, 示例:
 
     ```python

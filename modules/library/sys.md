@@ -16,20 +16,20 @@ category: library
 
 `atexit`将返回此函数设置的前一个值，初始值是 `None`.
 
-> 与 _CPython_ 差异: 这是一个 _MicroPython_ 扩展，旨在提供类似于 _CPython_ 中的 `atexit` 模块功能
+> 与 *CPython* 差异: 这是一个 *MicroPython* 扩展，旨在提供类似于 *CPython* 中的 `atexit` 模块功能
 
 
 ###### `sys.print_exception(exc, file=sys.stdout)`{:class="func"}
 
 打印异常并携带栈信息到一个类文件对象 `file`(默认是`sys.stdout`)
 
-> 与 _CPython_ 差异: 
-> 该函数是 _CPython_ 的 `traceback` 模块中同名函数简化实现, 与 `traceback.print_exception()` 不同:
+> 与 *CPython* 差异: 
+> 该函数是 *CPython* 的 `traceback` 模块中同名函数简化实现, 与 `traceback.print_exception()` 不同:
 > - 它只接受异常值, 而不是异常类型/值/回溯对象
 > - `file` 参数是位置参数
-> - 不支持_further_ 参数
+> - 不支持*further* 参数
 >
-> 与 _CPython_ 兼容的 `traceback` 模块可以在 __micropython-lib__ 中找到.
+> 与 *CPython* 兼容的 `traceback` 模块可以在 **micropython-lib** 中找到.
 
 
 库常量
@@ -45,19 +45,19 @@ category: library
 
 - `sys.implementation`
 
-    包含 _Python_ 实现信息的对象, 对于 _MicroPython_, 包含以下属性:
+    包含 *Python* 实现信息的对象, 对于 *MicroPython*, 包含以下属性:
 
-    * _name_ - 字符串 _micropython_
+    * *name* - 字符串 *micropython*
 
-    * _version_ - 版本: _tuple (major, minor, micro)_, 例如 _(1, 12, 0)_
+    * *version* - 版本: *tuple (major, minor, micro)*, 例如 *(1, 12, 0)*
 
-    这个对象是区分 _MicroPython_ 与 _其他Python_ 实现的推荐方法(注意，可能在最小平台端口种不提供)
+    这个对象是区分 *MicroPython* 与 *其他Python* 实现的推荐方法(注意，可能在最小平台端口种不提供)
 
-    > 与 _CPython_ 差异: _CPython_ 在这个对象上提供了很多属性, 但 _MicroPython_ 仅实现了最有用的部分.
+    > 与 *CPython* 差异: *CPython* 在这个对象上提供了很多属性, 但 *MicroPython* 仅实现了最有用的部分.
 
 - `sys.maxsize`
 
-    当前平台可使用的原生最大数值, 或 _MicroPython_ `int` 类型可提供的最大值 <small>(当它小于原生最大数值时， 意味着 _MicroPython_ 不支持 `long int`)</small>
+    当前平台可使用的原生最大数值, 或 *MicroPython* `int` 类型可提供的最大值 <small>(当它小于原生最大数值时， 意味着 *MicroPython* 不支持 `long int`)</small>
 
     这个属性对于检测平台字长非常有用(例如: 32位/64位). 建议不要直接将此属性与某个值进行比较，而是计算其位数量:
     ```python
@@ -84,8 +84,8 @@ category: library
 
 - `sys.platform`
 
-    _MicroPython_ 运行平台, 对于 _OS/RTOS_ 环境, 通常是一个 _OS_ 的标识符, 例如 _linux_.
-    对于裸机板(不包含操作系统)通常是板子的标识, 例如 _pyboard_ 来标识原生参考板.
+    *MicroPython* 运行平台, 对于 *OS/RTOS* 环境, 通常是一个 *OS* 的标识符, 例如 *linux*.
+    对于裸机板(不包含操作系统)通常是板子的标识, 例如 *pyboard* 来标识原生参考板.
     因此它可用于区分不同的板子. 如需检查程序运行在MicroPython的哪种板子上, 请使用 `sys.implementation`.
 
 - `sys.stderr`
@@ -102,10 +102,10 @@ category: library
 
 - `sys.version`
 
-    实现遵循的 _Python_ 语言版本， 一个字符串 _"3.4.0"_
+    实现遵循的 *Python* 语言版本， 一个字符串 *"3.4.0"*
 
 - `sys.version_info`
 
-    实现遵循的 _Python_ 语言版本， 一个整数元组。
+    实现遵循的 *Python* 语言版本， 一个整数元组。
 
-    > 与 _CPython_ 差异: 仅返回前三部分版本(__major__, __minor__, __micro__), 使用数字索引
+    > 与 *CPython* 差异: 仅返回前三部分版本(**major**, **minor**, **micro**), 使用数字索引

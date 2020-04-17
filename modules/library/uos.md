@@ -19,7 +19,7 @@ category: library
 
 - `release` -- 底层系统版本
 
-- `version` -- _MicroPython_ 版本和构建日期
+- `version` -- *MicroPython* 版本和构建日期
 
 - `machine` -- 底层硬件标识(例如 板名, CPU)
 
@@ -50,7 +50,7 @@ category: library
 
 - `inode` 是与文件的inode对应的整数, 对于无`inode`概念的文件系统是0
 
-- 一些平台上会返回4元素`tuple`, 最后一位是 `size`, 对于 _文件_, `size`表示文件大小, 对于 _目录_ 则是未定义
+- 一些平台上会返回4元素`tuple`, 最后一位是 `size`, 对于 *文件*, `size`表示文件大小, 对于 *目录* 则是未定义
 
 
 ###### `uos.listdir([dir])`{:class="func"}
@@ -109,7 +109,7 @@ inodes 相关参数: 如果具体平台不支持, `f_files`, `f_ffree`, `f_avail
 
 ###### `uos.dupterm(stream_object, index=0)`{:class="func"}
 
-在给定的 _类流_ 对象上复制或切换 _MicroPython_ 终端(`REPL)`.
+在给定的 *类流* 对象上复制或切换 *MicroPython* 终端(`REPL)`.
 `stream_object`参数必须是一个原生流对象, 或派生自`uio.IOBase` 实现了 `readinto()`和`write()`方法.
 流应该是非阻塞式，如果无可读数据，`readinto()` 应该返回 `None`.
 
@@ -119,13 +119,13 @@ inodes 相关参数: 如果具体平台不支持, `f_files`, `f_ffree`, `f_avail
 
 如果 `stream_object` 传入 `None`, 那么 `index` 指定的复制槽将被取消
 
-函数返回给定槽上上一个指定的 _类流_ 对象
+函数返回给定槽上上一个指定的 *类流* 对象
 
 
 文件系统挂载
 ===================
 
-一些实现平台提供了一个虚拟文件系统(VFS)、允许在VFS中挂载多个 __真实__ 文件系统的能力.
+一些实现平台提供了一个虚拟文件系统(VFS)、允许在VFS中挂载多个 **真实** 文件系统的能力.
 
 文件系统对象可以挂载到VFS的根目录, 也可以挂载到任一子目录.
 
@@ -153,17 +153,17 @@ inodes 相关参数: 如果具体平台不支持, `f_files`, `f_ffree`, `f_avail
 
 ##### `uos.VfsFat(block_dev)`{:class="class"}
 
-创建一个 _FAT格式_ 的文件系统对象. 
+创建一个 *FAT格式* 的文件系统对象. 
 FAT文件系统的存储由 `block_dev` 提供. 这个构造函数创建的对象可以使用`mount()`进行挂载
 
 ###### `static mkfs(block_dev)`{:class="method"}
-在块设备 `block_dev` 上创建 _FAT_ 文件系统
+在块设备 `block_dev` 上创建 *FAT* 文件系统
 
 
 块设备
 =============
 
-一个 __块设备__ 是实现了 __块协议__ 的对象, 即`AbstractBlockDev`类描述的方法集.
+一个 **块设备** 是实现了 **块协议** 的对象, 即`AbstractBlockDev`类描述的方法集.
 此类的具体实现通常允许访问类似内存功能的硬件(如闪存).
 一个特定文件系统驱动可以使用一个块设备来存储其文件系统的数据.
 
@@ -191,7 +191,7 @@ FAT文件系统的存储由 `block_dev` 提供. 这个构造函数创建的对�
 
 - `4` -- 获取块数量, 需要返回一个整数 (`arg`未用)
 
-- `5` -- 获取单块的字节大小, 需要返回一个整数, 或 `None` 表示默认值 __512__ (`arg`未用)
+- `5` -- 获取单块的字节大小, 需要返回一个整数, 或 `None` 表示默认值 **512** (`arg`未用)
 
 作为示例，下面的类实现了一个块设备，该设备使用 `bytearray` 将数据存储在RAM中:
 

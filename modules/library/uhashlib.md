@@ -7,11 +7,11 @@ category: library
 
 该模块实现了二进制数据哈希算法. 可用算法依赖于实现平台, 可实现的有:
 
-- __SHA256__ - 现代哈希算法(SHA2系列), 适用于加密安全的情况. 基本所有 _MicroPython_ 都实现了此算法, 除非 Flash 大小受限情况下不提供
+- **SHA256** - 现代哈希算法(SHA2系列), 适用于加密安全的情况. 基本所有 *MicroPython* 都实现了此算法, 除非 Flash 大小受限情况下不提供
 
-- __SHA1__ - 上一代算法。新应用不推荐使用，但是 _SHA1_ 是许多Internet标准和现有应用程序的一部分，因此尝试提供这一功能
+- **SHA1** - 上一代算法。新应用不推荐使用，但是 *SHA1* 是许多Internet标准和现有应用程序的一部分，因此尝试提供这一功能
 
-- __MD5__ - 一种遗留算法，在密码上不安全。基本上不提供
+- **MD5** - 一种遗留算法，在密码上不安全。基本上不提供
 
 
 构造函数
@@ -19,17 +19,17 @@ category: library
 
 ##### `class uhashlib.sha256([data])`{:class="class"}
 
-创建一个 _SHA256_ 散列对象，`data` 可选
+创建一个 *SHA256* 散列对象，`data` 可选
 
 
 ##### `class uhashlib.sha1([data])`{:class="class"}
 
-创建一个 _SHA1_ 散列对象，`data` 可选
+创建一个 *SHA1* 散列对象，`data` 可选
 
 
 ##### `class uhashlib.md5([data])`{:class="class"}
 
-创建一个 _MD5_ 散列对象，`data` 可选
+创建一个 *MD5* 散列对象，`data` 可选
 
 
 方法

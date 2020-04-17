@@ -15,7 +15,7 @@ category: library
 
 将二进制数据转换为十六进制表示, 返回字节字符串.
 
-> 与 _CPython_ 差异: 如果提供了 `sep` 参数, 会被当成分割符 分割十六进制值
+> 与 *CPython* 差异: 如果提供了 `sep` 参数, 会被当成分割符 分割十六进制值
 
 
 ###### `ubinascii.unhexlify(data)`{:class="func"}

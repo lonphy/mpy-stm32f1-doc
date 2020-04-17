@@ -5,103 +5,71 @@ date:   2019-08-18 0:0:0 +0000
 category: library
 ---
 
-"uselect" -- wait for events on a set of streams
-************************************************
-
-*This module implements a subset of the corresponding* "CPython"
-*module, as described below. For more information, refer to the
-original CPython documentation:* "select".
-
-This module provides functions to efficiently wait for events on
-multiple "streams" (select streams which are ready for operations).
+*uselect* 模块提供的函数可以有效地等待多个 `流` 上的事件(选择已就绪的流).
 
 
-Functions
+模块方法
 =========
 
-uselect.poll()
+###### `uselect.poll()`{:class="class"}
 
-   Create an instance of the Poll class.
+创建一个 `Poll类` 的实例
 
-uselect.select(rlist, wlist, xlist[, timeout])
+###### `uselect.select(rlist, wlist, xlist[, timeout])`{:class="class"}
 
-   Wait for activity on a set of objects.
-
-   This function is provided by some MicroPython ports for
-   compatibility and is not efficient. Usage of "Poll" is recommended
-   instead.
+等待一组对象上的活动. 这个函数是为了兼容，但是效率不高。建议使用`Poll`代替。
 
 
-class "Poll"
-============
+类 `Poll` 实例方法
+=================
+
+##### `poll.register(obj[, eventmask])`{:class="method"}
+
+注册 `流` 对象 `obj` 到 轮询对象中. `eventmask` 可以逻辑或组合以下事件:
+
+* `uselect.POLLIN`  - 数据读就绪
+
+* `uselect.POLLOUT` - 数据写就绪
+
+> 注意: 事件 `uselect.POLLHUP` 与 `uselect.POLLERR` 在此处不可用.
+
+*eventmask* 默认值 `uselect.POLLIN | uselect.POLLOUT`.
+
+对于同一个 `obj`，多次调用该函数都会成功, 同时更新 `eventmask` (与 `modify()`表现类似)
+
+##### `poll.unregister(obj)`{:class="method"}
+
+从轮询对象注销 `obj`
 
 
-Methods
--------
+##### `poll.modify(obj, eventmask)`{:class="method"}
 
-poll.register(obj[, eventmask])
+修改 `obj` 的 `eventmask`, 如果 `obj` 未注册, 则引发 `ENOENT`(`OSError`).
 
-   Register "stream" *obj* for polling. *eventmask* is logical OR of:
+##### `poll.poll(timeout=-1)`{:class="method"}
 
-   * "uselect.POLLIN"  - data available for reading
+等待至少一个已注册的对象准备就绪或触发异常条件. 超时时间可选, 单位:毫秒.（如果 未指定 或是 -1，则不会超时)
 
-   * "uselect.POLLOUT" - more data can be written
+返回 一个 `("obj", "event", ...)` 元组列表. (元组中可能包含多余2个元素，取决于实现平台).
 
-   Note that flags like "uselect.POLLHUP" and "uselect.POLLERR" are
-   *not* valid as input eventmask (these are unsolicited events which
-   will be returned from "poll()" regardless of whether they are asked
-   for). This semantics is per POSIX.
+`event` - 指定在流`obj`上发生的事件，它是上述`uselect.POLL*`的常量组合.
 
-   *eventmask* defaults to "uselect.POLLIN | uselect.POLLOUT".
+注意: 事件`uselect.POLLHUP`和`uselect.POLLERR`可能随时（即使不要求）返回, 且必须采取相应措施(注销obj并适当地close), 因为后续调用`poll()`都会立即返回, 且仍然是这些事件.
 
-   It is OK to call this function multiple times for the same *obj*.
-   Successive calls will update *obj*'s eventmask to the value of
-   *eventmask* (i.e. will behave as "modify()").
+超时的情况下，返回空列表.
 
-poll.unregister(obj)
+> 与 _CPython_差异: 可能返回多余2个元素的元组
 
-   Unregister *obj* from polling.
+##### `poll.ipoll(timeout=-1, flags=0)`{:class="method"}
 
-poll.modify(obj, eventmask)
 
-   Modify the *eventmask* for *obj*. If *obj* is not registered,
-   "OSError" is raised with error of ENOENT.
+类似`poll.poll()`, 但返回一个产生 *被调用函数所有元组* 的迭代器, 该方法提供了一种高效无分配的 `流` 轮询方式.
 
-poll.poll(timeout=-1)
+如果`flags`置 `1`, 将使用事件的一次性行为:   
 
-   Wait for at least one of the registered objects to become ready or
-   have an exceptional condition, with optional timeout in
-   milliseconds (if *timeout* arg is not specified or -1, there is no
-   timeout).
+    发生事件后, 流的事件掩码将自动重置 (与 poll.modify(obj, 0) 等价), 因此，在未设置新掩码前，不会处理此流的任何事件.
 
-   Returns list of ("obj", "event", ...) tuples. There may be other
-   elements in tuple, depending on a platform and version, so don't
-   assume that its size is 2. The "event" element specifies which
-   events happened with a stream and is a combination of
-   "uselect.POLL*" constants described above. Note that flags
-   "uselect.POLLHUP" and "uselect.POLLERR" can be returned at any time
-   (even if were not asked for), and must be acted on accordingly (the
-   corresponding stream unregistered from poll and likely closed),
-   because otherwise all further invocations of "poll()" may return
-   immediately with these flags set for this stream again.
+此行为对于异步I/O调度器非常有用
 
-   In case of timeout, an empty list is returned.
-
-   Difference to CPython: Tuples returned may contain more than 2
-   elements as described above.
-
-poll.ipoll(timeout=-1, flags=0)
-
-   Like "poll.poll()", but instead returns an iterator which yields a
-   "callee-owned tuple". This function provides an efficient,
-   allocation-free way to poll on streams.
-
-   If *flags* is 1, one-shot behavior for events is employed: streams
-   for which events happened will have their event masks automatically
-   reset (equivalent to "poll.modify(obj, 0)"), so new events for such
-   a stream won't be processed until new mask is set with
-   "poll.modify()". This behavior is useful for asynchronous I/O
-   schedulers.
-
-   Difference to CPython: This function is a MicroPython extension.
+>   该方法是 *MicroPython* 特有扩展
 

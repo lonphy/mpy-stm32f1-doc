@@ -5,367 +5,239 @@ date:   2019-08-18 0:0:0 +0000
 category: library
 ---
 
-"usocket" -- socket module
-**************************
+`usocket` -- 套接字模块
+======================
 
-*This module implements a subset of the corresponding* "CPython"
-*module, as described below. For more information, refer to the
-original CPython documentation:* "socket".
+*usocket* 模块提供访问 BSD套接字的接口.
 
-This module provides access to the BSD socket interface.
-
-Difference to CPython: For efficiency and consistency, socket objects
-in MicroPython implement a "stream" (file-like) interface directly. In
-CPython, you need to convert a socket to a file-like object using
-"makefile()" method. This method is still supported by MicroPython
-(but is a no-op), so where compatibility with CPython matters, be sure
-to use it.
+> 与 _CPython_ 差异:   
+> - 为了性能与一致性, __socket__ 在 __MicroPython__ 中直接实现为一个 `流` (类文件)接口. 
+> - 在 _CPython_ 中 通常需要用 `makefile()`方法 转换socket 对象 为 类文件对象, __MicroPython__ 中仍然支持这个方法(实际什么都没做), 为了与 _CPython_ 兼容，尽量使用它
 
 
-Socket address format(s)
+socket 地址格式
 ========================
 
-The native socket address format of the "usocket" module is an opaque
-data type returned by "getaddrinfo" function, which must be used to
-resolve textual address (including numeric addresses):
+*usocket* 模块的本地地址格式是由 `getaddrinfo`函数返回的不透明数据类型. 它必须用于解析文本地址(包括IP地址):
 
-   sockaddr = usocket.getaddrinfo('www.micropython.org', 80)[0][-1]
-   # You must use getaddrinfo() even for numeric addresses
-   sockaddr = usocket.getaddrinfo('127.0.0.1', 80)[0][-1]
-   # Now you can use that address
-   sock.connect(addr)
+```py
+# 解析域名到地址
+sockaddr = usocket.getaddrinfo('www.micropython.org', 80)[0][-1]
+# 即使是IP地址, 也必须使用 getaddrinfo()
+sockaddr = usocket.getaddrinfo('127.0.0.1', 80)[0][-1]
+# 使用解析后的地址
+sock.connect(addr)
+```
 
-Using "getaddrinfo" is the most efficient (both in terms of memory and
-processing power) and portable way to work with addresses.
+* 在编写可移植的应用程序时，总是使用`getaddrinfo`。
 
-However, "socket" module (note the difference with native MicroPython
-"usocket" module described here) provides CPython-compatible way to
-specify addresses using tuples, as described below. Note that
-depending on a "MicroPython port", "socket" module can be builtin or
-need to be installed from "micropython-lib" (as in the case of
-"MicroPython Unix port"), and some ports still accept only numeric
-addresses in the tuple format, and require to use "getaddrinfo"
-function to resolve domain names.
+* 下面描述的元组地址可以作为使用的快捷方式. 
 
-Summing up:
+`socket` 模块的 _地址元组_ 格式:
 
-* Always use "getaddrinfo" when writing portable applications.
+* IPv4: `(ipv4_address, port)`:
+    - *ipv4_address* - 点分数字格式的IPv4地址(字符串)，例如 *8.8.8.8*
+    
+    - *port* - 端口号, 范围 1-65535. 
 
-* Tuple addresses described below can be used as a shortcut for
-  quick hacks and interactive use, if your port supports them.
+* IPv6: `(ipv6_address, port, flowinfo, scopeid)`:
+    - *ipv6_address* - 冒号分割的十六进制数字IPv6地址(字符串), 例如 ""2001:db8::1""
 
-Tuple address format for "socket" module:
-
-* IPv4: *(ipv4_address, port)*, where *ipv4_address* is a string
-  with dot-notation numeric IPv4 address, e.g. ""8.8.8.8"", and *port*
-  is and integer port number in the range 1-65535. Note the domain
-  names are not accepted as *ipv4_address*, they should be resolved
-  first using "usocket.getaddrinfo()".
-
-* IPv6: *(ipv6_address, port, flowinfo, scopeid)*, where
-  *ipv6_address* is a string with colon-notation numeric IPv6 address,
-  e.g. ""2001:db8::1"", and *port* is an integer port number in the
-  range 1-65535. *flowinfo* must be 0. *scopeid* is the interface
-  scope identifier for link-local addresses. Note the domain names are
-  not accepted as *ipv6_address*, they should be resolved first using
-  "usocket.getaddrinfo()". Availability of IPv6 support depends on a
-  "MicroPython port".
+    - *port* - 端口号, 范围 1-65535. 
+    
+    - *flowinfo* - 必须是 0.
+    
+    - *scopeid* - 本地链接地址的接口范围标识符.
 
 
-Functions
+模块方法
+=========
+###### `usocket.socket(af=AF_INET, type=SOCK_STREAM, proto=IPPROTO_TCP)`{:class="class"}
+
+使用给定的地址类型、socket类型创建新的 *socket*. 
+
+```py
+from usocket import *
+# 创建 TCP socket
+socket(AF_INET, SOCK_STREAM)
+# 创建 UDP socket
+socket(AF_INET, SOCK_DGRAM)
+```
+
+###### `usocket.getaddrinfo(host, port, af=0, type=0, proto=0, flags=0)`{:class="func"}
+
+将 主机/端口 参数转换为包含创建 连接到该服务的 *socket* 所需的所有参数的5元组.
+
+
+*af*, *type*, 与 *proto* (和`socket()`构造参数相同) 用于过滤指定类型地址(当前实现固定返回 `AF_INET` + `SOCK_STREAM`).
+
+结果列表的 `5-tuples` 结构如下:
+
+`(family, type, proto, canonname, sockaddr)`
+
+下面演示如何连接到给定的url:
+
+```py
+s = usocket.socket()
+s.connect(usocket.getaddrinfo('www.micropython.org', 80)[0][-1])
+```
+
+
+常量
 =========
 
-usocket.socket(af=AF_INET, type=SOCK_STREAM, proto=IPPROTO_TCP)
+- `usocket.AF_INET`{:class="const"}
+- `usocket.AF_INET6`{:class="const"}
 
-   Create a new socket using the given address family, socket type and
-   protocol number. Note that specifying *proto* in most cases is not
-   required (and not recommended, as some MicroPython ports may omit
-   "IPPROTO_*" constants). Instead, *type* argument will select needed
-   protocol automatically:
+地址类型, `AF_INET` 对应 *IPv4*, `AF_INET6` 对应 *IPv6*. 
 
-      # Create STREAM TCP socket
-      socket(AF_INET, SOCK_STREAM)
-      # Create DGRAM UDP socket
-      socket(AF_INET, SOCK_DGRAM)
+- `usocket.SOCK_STREAM`{:class="const"}
+- `usocket.SOCK_DGRAM`{:class="const"}
+   
+Socket 类型. 
 
-usocket.getaddrinfo(host, port, af=0, type=0, proto=0, flags=0)
+- `usocket.IPPROTO_UDP`{:class="const"}
+- `usocket.IPPROTO_TCP`{:class="const"}
 
-   Translate the host/port argument into a sequence of 5-tuples that
-   contain all the necessary arguments for creating a socket connected
-   to that service. Arguments *af*, *type*, and *proto* (which have
-   the same meaning as for the "socket()" function) can be used to
-   filter which kind of addresses are returned. If a parameter is not
-   specified or zero, all combinations of addresses can be returned
-   (requiring filtering on the user side).
+IP 协议类型, 无需调用 `usocket.socket()` 时传入, 因为 `SOCK_STREAM` 自动选择 `IPPROTO_TCP`, `SOCK_DGRAM` 自动选择 `IPPROTO_UDP`, 
 
-   The resulting list of 5-tuples has the following structure:
+- `usocket.SOL_*`{:class="const"}
 
-      (family, type, proto, canonname, sockaddr)
-
-   The following example shows how to connect to a given url:
-
-      s = usocket.socket()
-      # This assumes that if "type" is not specified, an address for
-      # SOCK_STREAM will be returned, which may be not true
-      s.connect(usocket.getaddrinfo('www.micropython.org', 80)[0][-1])
-
-   Recommended use of filtering params:
-
-      s = usocket.socket()
-      # Guaranteed to return an address which can be connect'ed to for
-      # stream operation.
-      s.connect(usocket.getaddrinfo('www.micropython.org', 80, 0, SOCK_STREAM)[0][-1])
-
-   Difference to CPython: CPython raises a "socket.gaierror" exception
-   ("OSError" subclass) in case of error in this function. MicroPython
-   doesn't have "socket.gaierror" and raises OSError directly. Note
-   that error numbers of "getaddrinfo()" form a separate namespace and
-   may not match error numbers from the "uerrno" module. To
-   distinguish "getaddrinfo()" errors, they are represented by
-   negative numbers, whereas standard system errors are positive
-   numbers (error numbers are accessible using "e.args[0]" property
-   from an exception object). The use of negative values is a
-   provisional detail which may change in the future.
-
-usocket.inet_ntop(af, bin_addr)
-
-   Convert a binary network address *bin_addr* of the given address
-   family *af* to a textual representation:
-
-      >>> usocket.inet_ntop(usocket.AF_INET, b"\x7f\0\0\1")
-      '127.0.0.1'
-
-usocket.inet_pton(af, txt_addr)
-
-   Convert a textual network address *txt_addr* of the given address
-   family *af* to a binary representation:
-
-      >>> usocket.inet_pton(usocket.AF_INET, "1.2.3.4")
-      b'\x01\x02\x03\x04'
+*socket* 选项级别(`setsockopt()`的参数).
 
 
-Constants
-=========
+- `usocket.SO_*`{:class="const"}
 
-usocket.AF_INET
-usocket.AF_INET6
-
-   Address family types. Availability depends on a particular
-   "MicroPython port".
-
-usocket.SOCK_STREAM
-usocket.SOCK_DGRAM
-
-   Socket types.
-
-usocket.IPPROTO_UDP
-usocket.IPPROTO_TCP
-
-   IP protocol numbers. Availability depends on a particular
-   "MicroPython port". Note that you don't need to specify these in a
-   call to "usocket.socket()", because "SOCK_STREAM" socket type
-   automatically selects "IPPROTO_TCP", and "SOCK_DGRAM" -
-   "IPPROTO_UDP". Thus, the only real use of these constants is as an
-   argument to "setsockopt()".
-
-usocket.SOL_*
-
-   Socket option levels (an argument to "setsockopt()"). The exact
-   inventory depends on a "MicroPython port".
-
-usocket.SO_*
-
-   Socket options (an argument to "setsockopt()"). The exact inventory
-   depends on a "MicroPython port".
-
-Constants specific to WiPy:
-
-usocket.IPPROTO_SEC
-
-   Special protocol value to create SSL-compatible socket.
+*socket* 选项(`setsockopt()`的参数).
 
 
-class socket
-------------
-
-
-Methods
+Socket 类方法
 =======
 
-socket.close()
+##### `socket.close()`{:class="method"}
 
-   Mark the socket closed and release all resources. Once that
-   happens, all future operations on the socket object will fail. The
-   remote end will receive EOF indication if supported by protocol.
+将 *socket* 标记为关闭并释放所有资源. 
+一旦发生这种情况，其上的所有后续操作都将失败.
+如果协议支持，远端将接收EOF指示.
 
-   Sockets are automatically closed when they are garbage-collected,
-   but it is recommended to "close()" them explicitly as soon you
-   finished working with them.
+当被垃圾收集时，*socket* 会自动关闭，但是建议在完成工作后显式地`close()`掉.
 
-socket.bind(address)
+##### `socket.bind(address)`{:class="method"}
 
-   Bind the socket to *address*. The socket must not already be bound.
+将 *socket* 绑定到给定 *address* . 该 *socket* 必须尚未绑定
 
-socket.listen([backlog])
+##### `socket.listen([backlog])`{:class="method"}
 
-   Enable a server to accept connections. If *backlog* is specified,
-   it must be at least 0 (if it's lower, it will be set to 0); and
-   specifies the number of unaccepted connections that the system will
-   allow before refusing new connections. If not specified, a default
-   reasonable value is chosen.
+【TCP】使能服务接收连接. `backlog` 无用
 
-socket.accept()
+##### `socket.accept()`{:class="method"}
 
-   Accept a connection. The socket must be bound to an address and
-   listening for connections. The return value is a pair (conn,
-   address) where conn is a new socket object usable to send and
-   receive data on the connection, and address is the address bound to
-   the socket on the other end of the connection.
+【TCP】接收一个连接. *socket* 必须是已绑定且在监听连接. 返回一个 `(conn, address)`对:
 
-socket.connect(address)
+- `conn` 是个 新的 *socket* 对象, 可调用 `TCP` 及 通用的 方法
+- `address` 是被接收连接的 *socket* 地址
 
-   Connect to a remote socket at *address*.
+##### `socket.connect(address)`{:class="method"}
 
-socket.send(bytes)
+【TCP】*socket* 连接到 *address*
 
-   Send data to the socket. The socket must be connected to a remote
-   socket. Returns number of bytes sent, which may be smaller than the
-   length of data ("short write").
 
-socket.sendall(bytes)
+##### `socket.send(bytes)`{:class="method"}
 
-   Send all data to the socket. The socket must be connected to a
-   remote socket. Unlike "send()", this method will try to send all of
-   data, by sending data chunk by chunk consecutively.
+【TCP】发送数据到 *socket* . *socket* 必须已连接到远端. 返回已发送的字节数(可能小于 `bytes` 长度, 即 __短写__ 的情况)
 
-   The behavior of this method on non-blocking sockets is undefined.
-   Due to this, on MicroPython, it's recommended to use "write()"
-   method instead, which has the same "no short writes" policy for
-   blocking sockets, and will return number of bytes sent on non-
-   blocking sockets.
 
-socket.recv(bufsize)
+##### `socket.recv(bufsize)`{:class="method"}
 
-   Receive data from the socket. The return value is a bytes object
-   representing the data received. The maximum amount of data to be
-   received at once is specified by bufsize.
+【TCP】从 *socket* 接收数据. 返回接收到的数据 - `bytes` 对象. 接收长度由 `bufsize` 指定.
 
-socket.sendto(bytes, address)
+##### `socket.sendto(bytes, address)`{:class="method"}
 
-   Send data to the socket. The socket should not be connected to a
-   remote socket, since the destination socket is specified by
-   *address*.
+【UDP】发送数据到 *socket* . 不要在 `TCP` socket 上执行, 发送目标由 `address` 指定.
 
-socket.recvfrom(bufsize)
 
-   Receive data from the socket. The return value is a pair *(bytes,
-   address)* where *bytes* is a bytes object representing the data
-   received and *address* is the address of the socket sending the
-   data.
+##### `socket.recvfrom(bufsize)`{:class="method"}
 
-socket.setsockopt(level, optname, value)
+【UDP】从 *socket* 上读取数据. 返回值是 *(bytes, address)*:
 
-   Set the value of the given socket option. The needed symbolic
-   constants are defined in the socket module (SO_* etc.). The *value*
-   can be an integer or a bytes-like object representing a buffer.
+- `bytes` - 是收到的数据
+- `address` - 是发送端的 *socket* 地址
 
-socket.settimeout(value)
+##### `socket.setsockopt(level, optname, value)`{:class="method"}
 
-   **Note**: Not every port supports this method, see below.
+为 *socket* 设定选项值. 所需符号常量 在 *socket* 模块定义(`SO_xxx`等). 
+`value` 是个数字或 类 `bytes` 对象提供的缓冲.
 
-   Set a timeout on blocking socket operations. The value argument can
-   be a nonnegative floating point number expressing seconds, or None.
-   If a non-zero value is given, subsequent socket operations will
-   raise an "OSError" exception if the timeout period value has
-   elapsed before the operation has completed. If zero is given, the
-   socket is put in non-blocking mode. If None is given, the socket is
-   put in blocking mode.
 
-   Not every "MicroPython port" supports this method. A more portable
-   and generic solution is to use "uselect.poll" object. This allows
-   to wait on multiple objects at the same time (and not just on
-   sockets, but on generic "stream" objects which support polling).
-   Example:
+##### `socket.settimeout(value)`{:class="method"}
 
-      # Instead of:
-      s.settimeout(1.0)  # time in seconds
-      s.read(10)  # may timeout
+设置 *socket* 阻塞操作的超时时间. `value` 可以是非负浮点数(单位 秒) 或 `None`. 
+- `value` 是 *非0值* , 且则随后的 *socket* 操作完成前耗费的实际大于该值则引发`OSError`异常.
 
-      # Use:
-      poller = uselect.poll()
-      poller.register(s, uselect.POLLIN)
-      res = poller.poll(1000)  # time in milliseconds
-      if not res:
-          # s is still not ready for input, i.e. operation timed out
+- `value` 是 *0* , 则 *socket* 操作处于 **非阻塞** 模式
 
-   Difference to CPython: CPython raises a "socket.timeout" exception
-   in case of timeout, which is an "OSError" subclass. MicroPython
-   raises an OSError directly instead. If you use "except OSError:" to
-   catch the exception, your code will work both in MicroPython and
-   CPython.
+- `value` 是 `None`, 则 *socket* 完全出入 **阻塞** 模式
 
-socket.setblocking(flag)
 
-   Set blocking or non-blocking mode of the socket: if flag is false,
-   the socket is set to non-blocking, else to blocking mode.
+更通用的做法是 使用 `uselect.poll` 对象, 可同时在多个对象上等待(不限于 *socket* , 在支持 `流` 的对象上都可以 ), 示例:
 
-   This method is a shorthand for certain "settimeout()" calls:
+```python
+# 设超时方式
+s.settimeout(1.0)  # 设置超时1s
+s.read(10)  # 读取可能会引发超时
 
-   * "sock.setblocking(True)" is equivalent to
-     "sock.settimeout(None)"
+# 轮询方式:
+poller = uselect.poll()
+poller.register(s, uselect.POLLIN)
+res = poller.poll(1000)  # 设置轮询间隔1000ms
+if not res:
+    # s 还未收到数据, 例如读取超时
+```
 
-   * "sock.setblocking(False)" is equivalent to "sock.settimeout(0)"
+> 与 _CPython_ 差异:   
+> _CPython_ 在超时情况下引发`socket.timeout`异常(`OSError`的子类), _MicroPython_ 则直接引发`OSError`.
 
-socket.makefile(mode='rb', buffering=0)
 
-   Return a file object associated with the socket. The exact returned
-   type depends on the arguments given to makefile(). The support is
-   limited to binary modes only ('rb', 'wb', and 'rwb'). CPython's
-   arguments: *encoding*, *errors* and *newline* are not supported.
+##### `socket.setblocking(flag)`{:class="method"}
 
-   Difference to CPython: As MicroPython doesn't support buffered
-   streams, values of *buffering* parameter is ignored and treated as
-   if it was 0 (unbuffered).
+设置 *socket* 为 `True`-**阻塞** 或 `False`-**非阻塞** 模式.
 
-   Difference to CPython: Closing the file object returned by
-   makefile() WILL close the original socket as well.
+该方法是 `settimeout` 的快捷调用:
 
-socket.read([size])
+* `sock.setblocking(True)` 等价于 `sock.settimeout(None)`
 
-   Read up to size bytes from the socket. Return a bytes object. If
-   *size* is not given, it reads all data available from the socket
-   until EOF; as such the method will not return until the socket is
-   closed. This function tries to read as much data as requested (no
-   "short reads"). This may be not possible with non-blocking socket
-   though, and then less data will be returned.
+* `sock.setblocking(False)` 等价于 `sock.settimeout(0)`
 
-socket.readinto(buf[, nbytes])
 
-   Read bytes into the *buf*.  If *nbytes* is specified then read at
-   most that many bytes.  Otherwise, read at most *len(buf)* bytes.
-   Just as "read()", this method follows "no short reads" policy.
+##### `socket.makefile(mode='rb', buffering=0)`{:class="method"}
 
-   Return value: number of bytes read and stored into *buf*.
+返回 *socket* 关联的文件对象. `mode` 限定 二进制操作(*rb*, *wb*, *rwb*). `buffering`参数无效
 
-socket.readline()
 
-   Read a line, ending in a newline character.
+##### `socket.read([size])`{:class="method"}
 
-   Return value: the line read.
+从 *socket* 读取至多`size`字节. 返回 `bytes` 对象. 如果未指定`size`则读取所有可用数据,除非碰到`EOF`; 
+因此 *socket* 关闭前不会返回. 该函数尝试读取尽可能多的数据(无短读). 
 
-socket.write(buf)
+但对于 *非阻塞socket* 不现实, 会返回已就绪的数据.
 
-   Write the buffer of bytes to the socket. This function will try to
-   write all data to a socket (no "short writes"). This may be not
-   possible with a non-blocking socket though, and returned value will
-   be less than the length of *buf*.
 
-   Return value: number of bytes written.
+##### `socket.readinto(buf[, nbytes])`{:class="method"}
 
-exception usocket.error
+读取数据到 `buf` 中, 如果指定了 `nbytes` 则最多读取这么多. 其他情况读取 `len(buf)` 字节.
+与`read()`一样，该方法遵循 *无短读* 策略.
 
-   MicroPython does NOT have this exception.
+返回 存储到 `buf` 中的已读取数据长度
 
-   Difference to CPython: CPython used to have a "socket.error"
-   exception which is now deprecated, and is an alias of "OSError". In
-   MicroPython, use "OSError" directly.
+
+##### `socket.readline()`{:class="method"}
+
+读取一行, 以换行符结束.
+
+##### `socket.write(buf)`{:class="method"}
+
+写`buf`持有的数据到 *socket* . 该方法尝试写入所有的数据(无 *短写* )。 
+
+对于 *非阻塞 socket* 是不现实的， 返回值可能小于 `buf` 的数据长度.
+
+返回已写入数据字节长度
